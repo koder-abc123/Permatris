@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <title>Permatris</title>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://unpkg.com/arweave/bundles/web.bundle.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body style="background-color:#FFFFFF">
+    <canvas id="tetrisCanvas" height="600px" width="300px" style="background-color: #000000;"></canvas>
+    <div id="gameOver">
+        <h1>Game Over !</h1>
+        <h3>Score: <span id="finalScore">0</span></h3>
+        <h2><a href="#" id="restart">Restart</a></h2>
+    </div>
+    <div id="side">
+        <div id="info">
+            <h1 id="levInfo">Level <br><span id="level">0</span></h1>
+            <h2 id="scInfo">Score <br><span id="score">0</span></h2>
+            <h2 id="rowInfo">Rows Hit <br><span id="rowsHit">0</span></h2>
+        </div>
+    </div>
+    <div style="display: none">
+        <input type="file" id="key-jwk" accept=".json" onchange="readFile(event)">
+        <audio id="rowhit">
+            <source src="mp3/rowhit.mp3">
+        </audio>
+        <audio id="gameover">
+            <source src="mp3/gameover.mp3">
+        </audio>
+    </div>
+    <div id="login-success">
+        <button id="play" class="btn btn-success">PLAY</button>
+    </div>
+    <div id="login-submit">
+        <button id="submit-score" class="btn btn-success">SUBMIT SCORE</button>
+    </div>
+    <div>
+        <button id="login">Login</button>
+        <input id="file-input" type='file' style="display:none" />
+    </div>
+    <div id="game-info-wrapper">
+        <div id="game-name">Permatris</div>
+        <div id="game-info"></div>
+        <div id="player-name"></div>
+    </div>
+    <div id="player-name-wrapper">
+        <div class="form-group">
+            <input type="text" placeholder="Enter your name" class="form-control" id="player-name-input">
+        </div>
+    </div>
+
+    <div id="perma-board">
+
+        <div id="permaboard-header">Permaboard</div>
+        <table id="permaboard-table">
+            <tr id="table-head">
+                <td>Player</td>
+                <td>Score</td>
+            </tr>
+        </table>
+        <div id="spinner" class="loader">Loading...</div>
+    </div>
+</body>
+<script src="js/arweave_handler.js"></script>
+<script src="js/permatris.js"></script>
+
+<script>
+    (function() {
+        var tetris = new Tetris('tetris');
+    })();
+</script>
+
+</html>
