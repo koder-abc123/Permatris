@@ -15,6 +15,7 @@ function Tetris(id) {
     this.displayPermaBoard();
     this.nickname = "";
     this.firstRun = 1;
+    this.lowScore = 0;
 }
 
 Tetris.prototype = {
@@ -36,6 +37,7 @@ Tetris.prototype = {
         this.previouslevel = 0;
         this.pause = 0;
         this.gameOver = 0;
+
 
 
         //Intialize the fields
@@ -412,6 +414,11 @@ Tetris.prototype = {
             return;
         }
 
+        if (this.score <= this.lowScore) {
+            document.getElementById("game-info").innerHTML = "Please ensure your score is higher than " + this.lowScore.toString();
+            return;
+        }
+
         arweave_handler.submitTrans(JSON.stringify({ 'name': this.nickname, 'score': this.score })).then((response) => {
 
             if (response.status === 200) {
@@ -483,7 +490,7 @@ Tetris.prototype = {
         file_reader.readAsText(file);
     },
     inputHandler: function(e) {
-        console.log(e.target.value);
+        //      console.log(e.target.value);
         this.nickname = e.target.value.toString();
         if (this.nickname.length > 5) {
             document.getElementById("play").style.display = "block";
@@ -494,6 +501,7 @@ Tetris.prototype = {
         }
     },
     displayPermaBoard: function() {
+
         arweave_handler.getPermaBoard().then((permaboard) => {
             if (document.getElementById("spinner")) {
                 document.getElementById("spinner").remove();
@@ -501,8 +509,10 @@ Tetris.prototype = {
             }
 
             // console.log(permaboard);
+            let permaboard_length = (permaboard.length > 10 ? 10 : permaboard.length);
+            this.lowScore = permaboard[permaboard_length - 1].score;
 
-            for (let i = 0; i < (permaboard.length > 10 ? 10 : permaboard.length); i++) {
+            for (let i = 0; i < permaboard_length; i++) {
 
                 var player = permaboard[i].name;
                 var score = permaboard[i].score.toString();
