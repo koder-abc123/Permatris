@@ -415,7 +415,8 @@ Tetris.prototype = {
         }
 
         if (this.score <= this.lowScore) {
-            document.getElementById("game-info").innerHTML = "Please ensure your score is higher than " + this.lowScore.toString();
+            document.getElementById("game-info").innerHTML = "Please ensure your score is higher than " + this.lowScore.toString() + "(the lowest permaboard score)";
+            document.getElementById("submit-score").style.display = "none";
             return;
         }
 
