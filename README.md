@@ -18,7 +18,7 @@ Checkout out http://localhost:8000 on your browser to play the game
 
 ## Tested on
 
-Chrome/Firefox/Microsoft Edge - Desktop
+Chrome/Firefox/Microsoft Edge/Brave - Desktop
 
 ## License
 
